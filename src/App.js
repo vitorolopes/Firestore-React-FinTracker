@@ -9,7 +9,7 @@ function App() {
     <div className="App">
           <BrowserRouter>
 
-          <Navbar/>
+            <Navbar/>
 
             <Switch>
                <Route exact path="/">
@@ -22,6 +22,7 @@ function App() {
                 <Signup/>
                </Route>
             </Switch>
+            
           </BrowserRouter>
     </div>
   );
