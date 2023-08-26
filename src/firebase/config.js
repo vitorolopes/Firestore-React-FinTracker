@@ -1,5 +1,7 @@
 import firebase from 'firebase/app';
 import "firebase/firestore"
+//! HERE 1
+import "firebase/auth"
 
 
 const firebaseConfig = {
@@ -16,5 +18,7 @@ firebase.initializeApp(firebaseConfig)
 
 // init service
 const projectFirestore = firebase.firestore()
-
-export {projectFirestore}
+//! HERE 2
+const projectAuth = firebase.auth()
+                          //! HERE 3
+export {projectFirestore, projectAuth}
