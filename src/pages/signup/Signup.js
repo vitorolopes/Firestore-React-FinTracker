@@ -1,6 +1,5 @@
 import styles from "./Signup.module.css"
 import {useState} from 'react'
-//! HERE 1
 import { useSignup } from "../../hooks/useSignup"
 
 const Signup = () => {
@@ -9,12 +8,10 @@ const Signup = () => {
   const [password, setPassword] = useState("")
   const [displayName, setDisplayName] = useState("")
 
-//! HERE 2
   const {signup, isLoading, error} = useSignup()
 
   const handleSubmit = (e) => { 
     e.preventDefault()
-    //! HERE 3
     // console.log(email, password, displayName);
      signup(email, password, displayName);
 
@@ -46,8 +43,7 @@ const Signup = () => {
                 value={displayName}
         />
       </label>
-{/* //! HERE 4 */}
-      {/* <button className="btn">Signup</button> */}
+
       {!isLoading && <button className="btn">Signup</button>}
       {isLoading && <button className="btn" disabled>loading</button>}
       {error && <p>{error}</p>}
