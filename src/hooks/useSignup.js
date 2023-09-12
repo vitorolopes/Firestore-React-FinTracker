@@ -6,7 +6,7 @@ export const useSignup = () => {
 
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-//! HERE 1
+
   const { dispatch } = useAuthContext()
 
 // So Firebase authentication allows us to set a user's displayName.
@@ -24,7 +24,6 @@ export const useSignup = () => {
         }
         // add displayName to user
         await res.user.updateProfile({displayName: displayName})
-//! HERE 2
         // dispatch login action
         dispatch({type: "LOGIN", payload: res.user})
 
