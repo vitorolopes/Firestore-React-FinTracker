@@ -2,16 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-//! HERE 1
-import { AuthContext } from './context/AuthContext';
+import { AuthContextProvider } from './context/AuthContext';
 
 
 ReactDOM.render(
   <React.StrictMode>
-  {/* //! HERE 2 */}
-    <AuthContext>
+    <AuthContextProvider>
        <App />
-    </AuthContext>
+    </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
