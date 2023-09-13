@@ -4,7 +4,7 @@ import {useLogout} from '../hooks/useLogout';
 
 
 const Navbar = () => {
-//! HERE 1
+
   const { logout } = useLogout()
 
   return (
@@ -17,7 +17,6 @@ const Navbar = () => {
         <li>
           <Link to="/signup">Signup</Link>
         </li>
-{/* //! HERE 2 */}
         <li>
           <button className="btn" onClick={logout}>Logout</button>
         </li>

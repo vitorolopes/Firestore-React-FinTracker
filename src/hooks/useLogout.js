@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { projectAuth } from '../firebase/config';
 import { useAuthContext } from './useAuthContext';
-
 
 export const useLogout = () => { 
 
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+//! HERE 1
+  const [isCancelled, setIsCancelled] = useState(false)
 
   const { dispatch } = useAuthContext()  
 
@@ -17,17 +18,33 @@ export const useLogout = () => {
     try {
       await projectAuth.signOut()
       dispatch({ type: "LOGOUT" })
-      // We don't need to pass in a payload here because we 
-      // don't need to set the user to be anything other than 
-      // null.If they log out, the user becomes null, right?
+
+//! HERE 3
+      // setIsLoading(false)
+      // setError(null)
+//  update state
+    if(!isCancelled){
       setIsLoading(false)
       setError(null)
-    } catch (err) {
-      console.log(err.message);
-      setError(err.message)
-      setIsLoading(false)
     }
 
+    } catch (err) {
+//! HERE 4
+      // console.log(err.message);
+      // setError(err.message)
+      // setIsLoading(false)
+      if(!isCancelled){
+        console.log(err.message);
+        setError(err.message)
+        setIsLoading(false)
+      }
+
+    }
   }
+//! HERE 2
+  useEffect(() => {
+    return () => setIsCancelled(true)
+  }, [])
+  
   return {logout, error, isLoading}
 }

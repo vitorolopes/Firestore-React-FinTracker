@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {projectAuth} from "../firebase/config"
 import {useAuthContext} from './useAuthContext';
 
@@ -6,12 +6,11 @@ export const useSignup = () => {
 
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+//! HERE 1
+  const [isCancelled, setIsCancelled] = useState(false)
 
   const { dispatch } = useAuthContext()
 
-// So Firebase authentication allows us to set a user's displayName.
-// Now, we can't just set any property, we can't make them up.
-// We can't say, Oh, we also want an age property or a favorite color property.
   const signup = async (email, password, displayName) => {
       setError(null) // reset the error to null everytime we sign up
       setIsLoading(true)
@@ -26,18 +25,27 @@ export const useSignup = () => {
         await res.user.updateProfile({displayName: displayName})
         // dispatch login action
         dispatch({type: "LOGIN", payload: res.user})
-
-        setIsLoading(false)
-        setError(null)
+        //! HERE 3
+        if(!isCancelled){
+          setIsLoading(false)
+          setError(null)
+        }
         
       } catch (err) {
-        console.log(err);
-        setError(err.message)
-        setIsLoading(false)
+        //! HERE 4
+        if(!isCancelled){
+          console.log(err.message);
+          setError(err.message)
+          setIsLoading(false)
+        }
+
       }
   }
+  //! HERE 2
+  useEffect(() => {
+    return () => setIsCancelled(true)
+  }, [])
 
   return { error, isLoading, signup}
-
 }
 
