@@ -6,7 +6,6 @@ export const useSignup = () => {
 
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
-//! HERE 1
   const [isCancelled, setIsCancelled] = useState(false)
 
   const { dispatch } = useAuthContext()
@@ -25,23 +24,19 @@ export const useSignup = () => {
         await res.user.updateProfile({displayName: displayName})
         // dispatch login action
         dispatch({type: "LOGIN", payload: res.user})
-        //! HERE 3
         if(!isCancelled){
           setIsLoading(false)
           setError(null)
         }
-        
       } catch (err) {
-        //! HERE 4
         if(!isCancelled){
           console.log(err.message);
           setError(err.message)
           setIsLoading(false)
         }
-
       }
   }
-  //! HERE 2
+
   useEffect(() => {
     return () => setIsCancelled(true)
   }, [])
