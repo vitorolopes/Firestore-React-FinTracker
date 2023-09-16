@@ -6,14 +6,12 @@ import { useAuthContext } from '../hooks/useAuthContext';
 const Navbar = () => {
 
   const { logout } = useLogout()
-//! HERE 1
   const {user} = useAuthContext()
 
   return (
     <nav className={styles.navbar}>
       <ul>
         <li className={styles.title}>myMoney</li>
-{/* //! HERE 2 */}
         {!user && (
           <>
             <li>
@@ -24,8 +22,6 @@ const Navbar = () => {
             </li>
           </>
         )}
-
-{/* //! HERE 3 */}
         {user && (
           <>
             <li>Hello {user.displayName}</li>
