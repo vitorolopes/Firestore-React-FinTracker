@@ -19,9 +19,8 @@ firebase.initializeApp(firebaseConfig)
 const projectFirestore = firebase.firestore()
 const projectAuth = firebase.auth()
 
-//! HERE 
+
 // timestamp
 const timestamp = firebase.firestore.Timestamp
-
-                                      //! HERE 
+                  
 export {projectFirestore, projectAuth, timestamp}

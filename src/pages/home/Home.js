@@ -1,16 +1,20 @@
 import styles from "./Home.module.css"
 import TransactionForm from './TransactionForm';
-
+import {useAuthContext} from '../../hooks/useAuthContext';
 
 const Home = () => {
+//! HERE 1
+  const {user} = useAuthContext()
+
   return (
-    //! HERE
+    
     <div className={styles.container}>
       <div className={styles.content}>
         Transaction List
       </div>
       <div className={styles.sidebar}>
-        <TransactionForm/>
+                     {/* //! HERE 2 */}
+        <TransactionForm uid={user.uid}/>
       </div>
     </div>
   )

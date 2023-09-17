@@ -40,9 +40,7 @@ export const useFirestore = (collection) => {
   const addDocument = async (doc) => { 
     dispatch({type: "IS_LOADING"})
     try {
-//! HERE 1
-      const createdAt = timestamp.fromDate(new Date)
-                                          //! HERE 2
+      const createdAt = timestamp.fromDate(new Date)                                
       const addedDocument = await ref.add({...doc, createdAt: createdAt}) // ref.add(doc) returns to us 
       // a reference to the document that we've just added.
       dispatchIfNotCancelled({type: "ADDED_DOCUMENT", payload: addedDocument})
