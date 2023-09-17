@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import { useAuthContext } from "./hooks/useAuthContext";
 
 function App() {
-                    //! HERE 1
+                   
   const {authIsReady, user} = useAuthContext()
 
   return (
@@ -20,21 +20,21 @@ function App() {
 
             <Switch>
                <Route exact path="/">
-               {/* //! HERE 2a */}
+           
                 {!user && <Redirect to="/login" />}
                 {user &&  <Home/>}
                
                </Route>
 
                <Route path="/login">
-                {/* //! HERE 2b */}
+         
                  {user && <Redirect to="/" />}
                  {!user &&  <Login/>}
                
                </Route>
 
                <Route path="/signup">
-                  {/* //! HERE 2c */}
+              
                    {user && <Redirect to="/"/>}
                    {!user && <Signup/>}
                   
