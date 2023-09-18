@@ -8,13 +8,15 @@ import TransactionList from "./TransactionList";
 const Home = () => {
 
   const {user} = useAuthContext()
-//! HERE 1
-  const {documents, error} = useCollection("transactions")
+  const {documents, error} = useCollection(
+          "transactions",
+          //! HERE 1
+          ["uid", "==", user.uid]
+        )
 
   return ( 
     <div className={styles.container}>
       <div className={styles.content}>
-{/* //! HERE 2 */}
         {error && <p>{error}</p>}
         {documents && <TransactionList transactions={documents}/>}
 
