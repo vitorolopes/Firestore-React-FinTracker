@@ -11,7 +11,6 @@ const Home = () => {
   const {documents, error} = useCollection(
           "transactions",
           ["uid", "==", user.uid],
-          //! HERE 1
           ["createdAt", "desc"]
         )
 

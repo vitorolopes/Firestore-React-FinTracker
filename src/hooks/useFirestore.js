@@ -12,14 +12,15 @@ const firestoreReducer = (state, action) => {
   switch (action.type){
     case "IS_LOADING":
       return { isLoading: true, document: null, success: false, error: null}
-
     case "ADDED_DOCUMENT":
       return {isLoading: false, document: action.payload, //* no need to "spread" the state
               success: true, error: null} //* since we are updating all state variables
+//! HERE 2
+    case "DELETED_DOCUMENT":
+      return {isLoading: false, document: null, success: true, error: null}
 
     case "ERROR":
       return {isLoading: false, document: null, success: false, error: action.payload}
-
     default:
       return state
   }
@@ -40,7 +41,7 @@ export const useFirestore = (collection) => {
   const addDocument = async (doc) => { 
     dispatch({type: "IS_LOADING"})
     try {
-      const createdAt = timestamp.fromDate(new Date)                                
+      const createdAt = timestamp.fromDate(new Date())                                
       const addedDocument = await ref.add({...doc, createdAt: createdAt}) // ref.add(doc) returns to us 
       // a reference to the document that we've just added.
       dispatchIfNotCancelled({type: "ADDED_DOCUMENT", payload: addedDocument})
@@ -49,9 +50,17 @@ export const useFirestore = (collection) => {
     }
 
   }
+  // delete a document
+  const deleteDocument =  async (id) => {  
+//! HERE 1
+    dispatch({type: "IS_LOADING"})
+    try {
+      await ref.doc(id).delete()
+      dispatchIfNotCancelled({type:"DELETED_DOCUMENT"})
+    } catch (err) {
+      dispatchIfNotCancelled({type: "ERROR", payload: "could not delete"})
+    }
 
-  const deleteDocument =  (id) => {  // TODO turn this func into async one
-    
   }
 
   useEffect(() => {
@@ -59,5 +68,4 @@ export const useFirestore = (collection) => {
   }, [])
   
   return {addDocument, deleteDocument, response}
-
 }
