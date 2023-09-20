@@ -1,0 +1,26 @@
+[debug] [2023-09-20T10:59:19.909Z] ----------------------------------------------------------------------
+[debug] [2023-09-20T10:59:19.911Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Utilizador\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2023-09-20T10:59:19.912Z] CLI Version:   9.18.0
+[debug] [2023-09-20T10:59:19.912Z] Platform:      win32
+[debug] [2023-09-20T10:59:19.912Z] Node Version:  v14.4.0
+[debug] [2023-09-20T10:59:19.913Z] Time:          Wed Sep 20 2023 11:59:19 GMT+0100 (Hora de verão da Europa Ocidental)
+[debug] [2023-09-20T10:59:19.913Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-09-20T10:59:19.981Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-09-20T10:59:19.981Z] > authorizing via signed-in user (lopesvitor959@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\C-WebDev\new-Net_Ninja\S14_Project-FinanceTracker\my-money
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+  * You are initializing within an existing Firebase project directory
+
